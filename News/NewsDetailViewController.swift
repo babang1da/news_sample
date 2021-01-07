@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: UITableViewController {
     
     // MARK: - UI
     
@@ -26,21 +26,29 @@ class NewsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Detail"
         configureUI(with: newsItem)
+        tableView.separatorStyle = .none
     }
     
     // MARK: - Helpful
     
-    private func configureUI(with model: NewsItem?) {
-        sourceLabel?.text = model?.source?.capitalized
-        dateLabel?.text = model?.date
-        titleLabel?.text = model?.title
-        descriptionLabel?.text = model?.description
-        if let data = model?.imageData {
+    private func configureUI(with item: NewsItem?) {
+        sourceLabel?.text = item?.source?.capitalized
+        dateLabel?.text = item?.date?.formatDate
+        titleLabel?.text = item?.title
+        if let data = item?.imageData {
             imageView?.image = UIImage(data: data)
         } else {
             imageView?.image = UIImage(named: "placeholder")
         }
+        descriptionLabel?.text = item?.description
+    }
+    
+    // MARK: - TableView Datasource
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 
 }

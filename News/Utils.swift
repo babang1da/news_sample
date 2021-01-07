@@ -16,7 +16,7 @@ extension String {
 extension String {
     var formatDate: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"//"yyyy-MM-dd HH:mm:ss Z"
         guard let date = dateFormatter.date(from: self) else {return ""}
         return date.formatDate
     }
@@ -25,7 +25,7 @@ extension String {
 extension Date {
     var formatDate: String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "MMM d, yyyy HH:mm"
         return dateFormatter.string(from: self)
     }
 }

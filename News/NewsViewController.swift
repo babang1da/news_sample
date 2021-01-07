@@ -50,6 +50,7 @@ class NewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "News"
         addLoadDataObserver()
         getNews()
     }
