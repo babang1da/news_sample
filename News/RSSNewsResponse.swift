@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct RSSNewsItem: Decodable {
+struct RSSNewsResponse: Decodable {
     var sourceName: String?
     var title: String?
     var pubDate: String?
@@ -15,8 +15,8 @@ struct RSSNewsItem: Decodable {
     var link: String?
 }
 
-extension RSSNewsItem: Comparable {
-    static func < (lhs: RSSNewsItem, rhs: RSSNewsItem) -> Bool {
+extension RSSNewsResponse: Comparable {
+    static func < (lhs: RSSNewsResponse, rhs: RSSNewsResponse) -> Bool {
         lhs.pubDate ?? "" < rhs.pubDate ?? ""
     }
 }

@@ -14,8 +14,8 @@ final class RSSParser: NSObject {
     private var currentData = [String: String]()
     private var parsedData = [[String: String]]()
     private var isHeader = true
-    
-    func startParsingWithContentsOfURL(rssURL: URL, completion: ([[String: String]]) -> Void) {
+
+    func startParsingWithContentsOfURL(rssURL: URL, completion: @escaping ([[String: String]]) -> Void) {
         let parser = XMLParser(contentsOf: rssURL)
         parser?.delegate = self
         if let _ = parser?.parse() {
@@ -39,17 +39,17 @@ extension RSSParser: XMLParserDelegate {
             if !isHeader {
                 parsedData.append(currentData)
             }
-            
             isHeader = false
         }
         
         if !isHeader {
-            
-            if currentElement == "media:thumbnail" || currentElement == "media:content",
-               let chars = attributeDict["url"] {
+            if
+                currentElement == "media:thumbnail" ||
+                currentElement == "media:content",
+                let chars = attributeDict["url"] {
+                
                 foundCharacters += chars
             }
-            
         }
     }
     
@@ -83,7 +83,10 @@ extension RSSParser: XMLParserDelegate {
             currentData[currentElement] = foundCharacters
             foundCharacters = ""
         }
-        
+    }
+    
+    func parserDidEndDocument(_ parser: XMLParser) {
+        print(#function)
     }
     
 }

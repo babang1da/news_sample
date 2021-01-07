@@ -15,14 +15,17 @@ final class NewsCollectionViewCell: UICollectionViewCell {
 }
 
 extension NewsCollectionViewCell: ConfigurableView {
-    func configure(with model: NewsCellModel) {
+    func configure(with model: NewsItem) {
         titleLabel?.text = model.title
         dateLabel?.text = model.date
         sourceLabel?.text = model.source?.uppercased()
+        if let data = model.imageData {
+            imageView?.image = UIImage(data: data)
+        } else {
+            imageView?.image = UIImage(named: "placeholder")
+            imageView?.contentMode = .scaleAspectFit
+        }
     }
-    
-    func setWidthConstant(_ width: CGFloat) {
-//        titleLabelWidthConstraint?.constant = width
-    }
+
 }
 

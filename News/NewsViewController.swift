@@ -24,7 +24,7 @@ class NewsViewController: UIViewController {
     private lazy var flowLayout: UICollectionViewCompositionalLayout = {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
-            heightDimension: NSCollectionLayoutDimension.estimated(300)
+            heightDimension: NSCollectionLayoutDimension.estimated(200)
         )
         let item = NSCollectionLayoutItem(layoutSize: size)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
@@ -37,21 +37,27 @@ class NewsViewController: UIViewController {
         return layout
     }()
     
+    //test
+    private var newsService: INewsService = NewsService(provider: RSSManager(),
+                                                        dataManager: DataManager.shared)
+    
     // MARK: - Datasource
     
-    private var news = [NewsCellModel]()
+    private var news = [NewsItem]()
 
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let rssManager = RSSManager()
-        rssManager.getNews(sources: [.google]) { [weak self] news in
-            self?.news = news.map { NewsCellModel(rssItem: $0) }
-            self?.collectionView.reloadData()
-            print("News.count: \(news.count)")
-        }
+        addLoadDataObserver()
+        getNews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        updateNews()
     }
     
     override func viewWillTransition(to size: CGSize,
@@ -63,6 +69,37 @@ class NewsViewController: UIViewController {
     }
     
     // MARK: - Helpful
+    
+    private func getNews() {
+        print(#function)
+        if let items = newsService.getNews() {
+            news = items
+            collectionView.reloadData()
+        }
+    }
+    
+    private func updateNews() {
+        newsService.updateNews(sources: [.gazeta, .google, .lenta]) { [weak self] items in
+            print(#function)
+            if let items = items {
+                print("items.count: \(items.count)")
+                self?.news = items
+                self?.collectionView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func actionReload(_ sender: UIBarButtonItem) {
+        updateNews()
+    }
+    
+    @IBAction func actionSettings(_ sender: UIBarButtonItem) {
+        if let vc = storyboard?.instantiateViewController(identifier: String(describing: SettingsViewController.self)) as? SettingsViewController {
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
 
 }
@@ -79,6 +116,13 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         }
         return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(identifier: String(describing: NewsDetailViewController.self)) as? NewsDetailViewController {
+            vc.newsItem = news[indexPath.item]
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
 }

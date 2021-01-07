@@ -7,18 +7,26 @@
 
 import UIKit
 
-struct NewsCellModel {
+struct NewsItem {
     var source: String?
     var title: String?
     var date: String?
     var description: String?
-    var image: UIImage?
+    var imageData: Data?
     
-    init(rssItem: RSSNewsItem) {
+    init(rssItem: RSSNewsResponse) {
         source = rssItem.sourceName
         title = rssItem.title
         date = rssItem.pubDate
         description = rssItem.description
-        image = nil
+        imageData = nil
+    }
+    
+    init(dbNewsItem: DBNewsItem) {
+        source = dbNewsItem.source
+        title = dbNewsItem.title
+        date = dbNewsItem.date
+        description = dbNewsItem.newsDescription
+        imageData = dbNewsItem.imageData
     }
 }

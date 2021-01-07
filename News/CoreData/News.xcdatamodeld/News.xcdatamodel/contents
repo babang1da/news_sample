@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B50" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DBNewsItem" representedClassName="DBNewsItem" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="String"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="newsDescription" optional="YES" attributeType="String"/>
+        <attribute name="source" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="title"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="DBNewsItem" positionX="-63" positionY="-18" width="128" height="104"/>
+    </elements>
+</model>
