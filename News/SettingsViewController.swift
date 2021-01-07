@@ -29,10 +29,12 @@ final class SettingsViewController: UIViewController {
         return appSettings?.rssSubscriptions ?? []
     }()
     private var sources = [RSSSubscription]()
+    private var sourcesCopy = [RSSSubscription]()
     
     // MARK: - Public
     
-    var appSettings: IAppSettings?
+    var appSettings: IAppSettings? = AppSettings()
+    var updateNewsList: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -47,7 +49,15 @@ final class SettingsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        appSettings?.rssSubscriptions = sources.compactMap { RSSSource(rawValue: $0.name) }
+        appSettings?.rssSubscriptions = sources.filter { $0.isActive }.compactMap { RSSSource(rawValue: $0.name) }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        if sources != sourcesCopy {
+            updateNewsList?()
+        }
     }
     
     // MARK: - Helpful
@@ -55,12 +65,13 @@ final class SettingsViewController: UIViewController {
     private func defineSubscriptions() {
         rssSubscriptions.forEach { allRSSSources[$0.rawValue] = true }
         sources = allRSSSources.map { RSSSubscription(name: $0.key, isActive: $0.value) }
+        sourcesCopy = sources
         tableView.reloadData()
     }
     
     // MARK: - Actions
     
-    @IBAction func actionCheckBox(_ sender: UIButton) {
+    @IBAction private func actionCheckBox(_ sender: UIButton) {
         if !sender.isSelected {
             sender.isSelected = true
             sender.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)

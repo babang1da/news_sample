@@ -20,7 +20,7 @@ class NewsViewController: UIViewController {
     }
     
     // MARK: - Private
-    
+        
     private lazy var flowLayout: UICollectionViewCompositionalLayout = {
         let size = NSCollectionLayoutSize(
             widthDimension: NSCollectionLayoutDimension.fractionalWidth(1),
@@ -37,7 +37,13 @@ class NewsViewController: UIViewController {
         return layout
     }()
     
+    private var sources: [RSSSource] {
+        appSettings.rssSubscriptions
+    }
+    
     //test
+    private var appSettings: IAppSettings = AppSettings()
+    
     private var newsService: INewsService = NewsService(provider: RSSManager(),
                                                         dataManager: DataManager.shared)
     
@@ -53,13 +59,14 @@ class NewsViewController: UIViewController {
         title = "News"
         addLoadDataObserver()
         getNews()
+        updateNews(sources: sources)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        updateNews()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//        updateNews(sources: sources)
+//    }
     
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
@@ -79,8 +86,8 @@ class NewsViewController: UIViewController {
         }
     }
     
-    private func updateNews() {
-        newsService.updateNews(sources: [.gazeta, .google, .lenta]) { [weak self] items in
+    private func updateNews(sources: [RSSSource]) {
+        newsService.updateNews(sources: sources) { [weak self] items in
             print(#function)
             if let items = items {
                 print("items.count: \(items.count)")
@@ -93,15 +100,20 @@ class NewsViewController: UIViewController {
     // MARK: - Actions
     
     @IBAction func actionReload(_ sender: UIBarButtonItem) {
-        updateNews()
+        updateNews(sources: sources)
     }
     
     @IBAction func actionSettings(_ sender: UIBarButtonItem) {
         if let vc = storyboard?.instantiateViewController(identifier: String(describing: SettingsViewController.self)) as? SettingsViewController {
+            vc.updateNewsList = { [weak self] in
+                guard let self = self else {return}
+                self.newsService.eraseCache()
+                self.getNews()
+                self.updateNews(sources: self.sources)
+            }
             navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 
 }
 

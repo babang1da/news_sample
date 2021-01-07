@@ -61,11 +61,16 @@ final class NewsService: INewsService {
     
     func eraseCache() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DBNewsItem")
-        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        fetchRequest.returnsObjectsAsFaults = false
+        
         do {
-            try dataManager.mainContext.execute(batchDeleteRequest)
-        } catch {
-            print("Detele all data in DBNewsItem error :", error)
+            let results = try dataManager.mainContext.fetch(fetchRequest)
+            for managedObject in results {
+                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                dataManager.mainContext.delete(managedObjectData)
+            }
+        } catch let error as NSError {
+            print("Delete all data in DBNewsItem error : \(error) \(error.userInfo)")
         }
     }
         
