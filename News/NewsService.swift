@@ -11,6 +11,7 @@ import CoreData
 protocol INewsService {
     func getNews() -> [NewsItem]?
     func updateNews(sources: [RSSSource], completion: @escaping ([NewsItem]?) -> Void)
+    func eraseCache()
 }
 
 final class NewsService: INewsService {
@@ -55,6 +56,16 @@ final class NewsService: INewsService {
                     completion(self?.retrieveNewsItems())
                 }
             }
+        }
+    }
+    
+    func eraseCache() {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DBNewsItem")
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try dataManager.mainContext.execute(batchDeleteRequest)
+        } catch {
+            print("Detele all data in DBNewsItem error :", error)
         }
     }
         

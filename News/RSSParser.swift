@@ -8,7 +8,6 @@
 import Foundation
 
 final class RSSParser: NSObject {
-//    private var xmlParser: XMLParser?
     private var currentElement = ""
     private var foundCharacters = ""
     private var currentData = [String: String]()

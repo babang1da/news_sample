@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum RSSSource: String {
+enum RSSSource: String, CaseIterable {
     case google
     case gazeta
     case lenta
