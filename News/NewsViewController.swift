@@ -87,10 +87,10 @@ class NewsViewController: UIViewController {
     }
     
     private func updateNews(sources: [RSSSource]) {
+        print(#function, sources)
         newsService.updateNews(sources: sources) { [weak self] items in
-            print(#function)
             if let items = items {
-                print("items.count: \(items.count)")
+                print("items.count: \(items.count)\n")
                 self?.news = items
                 self?.collectionView.reloadData()
             }
@@ -133,6 +133,10 @@ extension NewsViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let vc = storyboard?.instantiateViewController(identifier: String(describing: NewsDetailViewController.self)) as? NewsDetailViewController {
+
+            news[indexPath.item].isFresh = false
+            collectionView.reloadItems(at: [indexPath])
+            
             vc.newsItem = news[indexPath.item]
             navigationController?.pushViewController(vc, animated: true)
         }

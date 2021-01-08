@@ -58,6 +58,7 @@ final class RSSManager: NSObject, IRSSManager {
         group.notify(queue: .main) { [weak self] in
             guard let self = self else {return}
             completion(self.loadedNews)
+            self.loadedNews.removeAll()
         }
         
     }

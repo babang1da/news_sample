@@ -47,12 +47,12 @@ final class NewsService: INewsService {
         NotificationCenter.default.post(Notification(name: .beginLoadData))
         
         provider.getNews(sources: sources) { [weak self] news in
-            NotificationCenter.default.post(Notification(name: .endLoadData))
-            
+            print(#function, "sources: \(sources)", "news.count: \(news.count)")
             news.forEach { self?.saveNewsItem($0) }
             
             DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
                 DispatchQueue.main.async {
+                    NotificationCenter.default.post(Notification(name: .endLoadData))
                     completion(self?.retrieveNewsItems())
                 }
             }
@@ -61,17 +61,15 @@ final class NewsService: INewsService {
     
     func eraseCache() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "DBNewsItem")
-        fetchRequest.returnsObjectsAsFaults = false
-        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
         do {
-            let results = try dataManager.mainContext.fetch(fetchRequest)
-            for managedObject in results {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                dataManager.mainContext.delete(managedObjectData)
-            }
-        } catch let error as NSError {
-            print("Delete all data in DBNewsItem error : \(error) \(error.userInfo)")
+            try dataManager.mainContext.execute(batchDeleteRequest)
+            dataManager.saveContext()
+        } catch {
+            print("Detele all data in DBNewsItem error :", error)
         }
+        
     }
         
     private func retrieveNewsItems() -> [NewsItem]? {

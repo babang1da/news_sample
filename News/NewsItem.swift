@@ -13,6 +13,7 @@ struct NewsItem {
     var date: String?
     var description: String?
     var imageData: Data?
+    var isFresh: Bool
     
     init(rssItem: RSSNewsResponse) {
         source = rssItem.sourceName
@@ -20,6 +21,7 @@ struct NewsItem {
         date = rssItem.pubDate
         description = rssItem.description
         imageData = nil
+        isFresh = true
     }
     
     init(dbNewsItem: DBNewsItem) {
@@ -28,5 +30,6 @@ struct NewsItem {
         date = dbNewsItem.date
         description = dbNewsItem.newsDescription
         imageData = dbNewsItem.imageData
+        isFresh = true
     }
 }

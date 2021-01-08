@@ -42,14 +42,8 @@
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="236" id="mh7-7Q-vaM"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nE0-7U-p3K">
-                                                    <rect key="frame" x="344.5" y="8" width="29.5" height="16"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
-                                                    <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="highlightedColor" red="0.36862745099999999" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbd-4q-IZJ">
-                                                    <rect key="frame" x="8" y="8" width="52" height="20"/>
+                                                    <rect key="frame" x="8" y="8" width="51.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -63,6 +57,25 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="hlu-q2-rTB">
+                                                    <rect key="frame" x="326.5" y="8" width="47.5" height="10"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXA-80-lTm">
+                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="10"/>
+                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="10" id="GTD-UV-G5Y"/>
+                                                                <constraint firstAttribute="width" constant="10" id="L2n-5f-iW9"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nE0-7U-p3K">
+                                                            <rect key="frame" x="18" y="0.0" width="29.5" height="10"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="13"/>
+                                                            <color key="textColor" red="0.36862745099999999" green="0.36862745099999999" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="highlightedColor" red="0.36862745099999999" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="tbd-4q-IZJ" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="0ae-8N-BbL"/>
@@ -72,17 +85,18 @@
                                                 <constraint firstAttribute="trailing" secondItem="RfY-CL-Zpz" secondAttribute="trailing" constant="8" id="CmM-hG-lmA"/>
                                                 <constraint firstItem="RfY-CL-Zpz" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="Ggk-1d-Ts8"/>
                                                 <constraint firstItem="fgx-Z0-NR1" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="MJc-Is-ztq"/>
+                                                <constraint firstItem="hlu-q2-rTB" firstAttribute="top" secondItem="AbV-2R-oyc" secondAttribute="top" constant="8" id="MoG-F3-fRb"/>
                                                 <constraint firstItem="fgx-Z0-NR1" firstAttribute="top" secondItem="RfY-CL-Zpz" secondAttribute="bottom" constant="8" symbolic="YES" id="Q7G-bh-jKA"/>
-                                                <constraint firstAttribute="trailing" secondItem="nE0-7U-p3K" secondAttribute="trailing" constant="8" id="eup-bJ-bec"/>
-                                                <constraint firstItem="nE0-7U-p3K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tbd-4q-IZJ" secondAttribute="trailing" constant="8" symbolic="YES" id="gee-2W-ooE"/>
-                                                <constraint firstItem="nE0-7U-p3K" firstAttribute="top" secondItem="AbV-2R-oyc" secondAttribute="top" constant="8" id="kfP-Lh-IeS"/>
-                                                <constraint firstItem="RfY-CL-Zpz" firstAttribute="top" secondItem="nE0-7U-p3K" secondAttribute="bottom" constant="19" id="yw2-s0-Eug"/>
+                                                <constraint firstAttribute="trailing" secondItem="hlu-q2-rTB" secondAttribute="trailing" constant="8" id="jXe-1O-prf"/>
+                                                <constraint firstItem="hlu-q2-rTB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tbd-4q-IZJ" secondAttribute="trailing" constant="8" symbolic="YES" id="jyd-RH-3JA"/>
+                                                <constraint firstItem="RfY-CL-Zpz" firstAttribute="top" secondItem="tbd-4q-IZJ" secondAttribute="bottom" constant="15.5" id="pWa-Y7-Kb9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="382" height="319"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="nE0-7U-p3K" id="cBc-hT-mFg"/>
                                             <outlet property="imageView" destination="fgx-Z0-NR1" id="v0g-Kc-8DF"/>
+                                            <outlet property="isFreshView" destination="OXA-80-lTm" id="Fck-62-qJX"/>
                                             <outlet property="sourceLabel" destination="tbd-4q-IZJ" id="Bom-dA-TqJ"/>
                                             <outlet property="titleLabel" destination="RfY-CL-Zpz" id="9iW-DE-Dh8"/>
                                         </connections>
@@ -346,6 +360,9 @@
         <image name="circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

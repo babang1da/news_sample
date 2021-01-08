@@ -9,8 +9,7 @@ import Foundation
 import CoreData
 
 protocol IDataManager {
-    var mainContext: NSManagedObjectContext {get set}
-    func newBackgroundContext() -> NSManagedObjectContext
+    var mainContext: NSManagedObjectContext {get}
     func saveContext()
     var persistentContainer: NSPersistentContainer {get set}
 }
@@ -32,13 +31,13 @@ final class DataManager: IDataManager {
         return container
     }()
     
-    lazy var mainContext: NSManagedObjectContext = {
+    var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
-    }()
-    
-    func newBackgroundContext() -> NSManagedObjectContext {
-        return persistentContainer.newBackgroundContext()
     }
+    
+//    func newBackgroundContext() -> NSManagedObjectContext {
+//        return persistentContainer.newBackgroundContext()
+//    }
 
     // MARK: - Core Data Saving support
 
