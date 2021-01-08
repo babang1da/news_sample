@@ -20,6 +20,8 @@ class NewsViewController: UIViewController {
     }
     
     // MARK: - Private
+    
+    private var timer: Timer?
         
     private lazy var flowLayout: UICollectionViewCompositionalLayout = {
         let size = NSCollectionLayoutSize(
@@ -62,12 +64,6 @@ class NewsViewController: UIViewController {
         updateNews(sources: sources)
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//        updateNews(sources: sources)
-//    }
-    
     override func viewWillTransition(to size: CGSize,
                                      with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -77,6 +73,18 @@ class NewsViewController: UIViewController {
     }
     
     // MARK: - Helpful
+    
+    private func updateRefreshTimer(with interval: TimeInterval) {
+        timer?.invalidate()
+        timer = nil
+        guard interval > 0 else {return}
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true, block: { [weak self] _ in
+            guard let self = self else {return}
+            self.newsService.eraseCache()
+            self.getNews()
+            self.updateNews(sources: self.sources)
+        })
+    }
     
     private func getNews() {
         print(#function)
@@ -110,6 +118,10 @@ class NewsViewController: UIViewController {
                 self.newsService.eraseCache()
                 self.getNews()
                 self.updateNews(sources: self.sources)
+            }
+            vc.updateTimer = { [weak self] in
+                guard let self = self else {return}
+                self.updateRefreshTimer(with: self.appSettings.refreshInterval)
             }
             navigationController?.pushViewController(vc, animated: true)
         }

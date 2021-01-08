@@ -15,6 +15,7 @@ final class SettingsViewController: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.tableFooterView = UIView()
         }
     }
     
@@ -30,11 +31,13 @@ final class SettingsViewController: UIViewController {
     }()
     private var sources = [RSSSubscription]()
     private var sourcesCopy = [RSSSubscription]()
+    private var isTimerChanged = false
     
     // MARK: - Public
     
     var appSettings: IAppSettings? = AppSettings()
     var updateNewsList: (() -> Void)?
+    var updateTimer: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -42,7 +45,6 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Settings"
-        
         defineSubscriptions()
     }
     
@@ -57,6 +59,9 @@ final class SettingsViewController: UIViewController {
         
         if sources != sourcesCopy {
             updateNewsList?()
+        }
+        if isTimerChanged {
+            updateTimer?()
         }
     }
     
@@ -87,18 +92,64 @@ final class SettingsViewController: UIViewController {
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sources.count
+        switch section {
+        case 0:
+            return sources.count
+        case 1:
+            return 1
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsTableViewCell.self)) as? SettingsTableViewCell {
+        
+        switch indexPath.section {
+        case 0:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SettingsTableViewCell.self)) as? SettingsTableViewCell {
+                
+                cell.configure(with: sources[indexPath.row])
+                cell.checkBoxButton?.tag = indexPath.row
+                return cell
+            }
+        case 1:
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimerTableViewCell.self)) as? TimerTableViewCell {
+                cell.timeintervalChoosen = { [weak self] timeinterval in
+                    self?.appSettings?.refreshInterval = timeinterval
+                    self?.isTimerChanged = true
+                }
+                cell.currentInterval = appSettings?.refreshInterval
+                return cell
+            }
             
-            cell.configure(with: sources[indexPath.row])
-            cell.checkBoxButton?.tag = indexPath.row
-            return cell
+        default: break
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Sources"
+        case 1:
+            return "Refresh timer"
+        default:
+            return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 1:
+            return 170
+        default:
+            return 44
+        }
     }
     
 }

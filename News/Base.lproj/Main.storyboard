@@ -317,6 +317,28 @@
                                             <outlet property="sourceLabel" destination="y6t-NQ-gQ0" id="uxR-TA-W0J"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TimerTableViewCell" rowHeight="170" id="hCD-ER-zBc" customClass="TimerTableViewCell" customModule="News" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="71.5" width="414" height="170"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hCD-ER-zBc" id="jM8-H1-tWD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4yq-Oi-lcJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="170"/>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="4yq-Oi-lcJ" secondAttribute="bottom" id="I4m-rN-49J"/>
+                                                <constraint firstItem="4yq-Oi-lcJ" firstAttribute="leading" secondItem="jM8-H1-tWD" secondAttribute="leading" id="Mp4-zr-HAb"/>
+                                                <constraint firstItem="4yq-Oi-lcJ" firstAttribute="top" secondItem="jM8-H1-tWD" secondAttribute="top" id="aGQ-R0-pe4"/>
+                                                <constraint firstAttribute="trailing" secondItem="4yq-Oi-lcJ" secondAttribute="trailing" id="diZ-yN-xQT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timerPickerView" destination="4yq-Oi-lcJ" id="C0K-Yq-X3O"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -335,7 +357,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oSZ-ey-LOG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2746" y="60"/>
+            <point key="canvasLocation" x="2744.9275362318845" y="59.598214285714285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E2z-Ia-WNL">
