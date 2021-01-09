@@ -1,5 +1,5 @@
 //
-//  NewsCollectionViewCell.swift
+//  NewsListCollectionViewCell.swift
 //  News
 //
 //  Created by Egor Oprea on 05.01.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class NewsCollectionViewCell: UICollectionViewCell {
+final class NewsListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -19,7 +19,7 @@ final class NewsCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension NewsCollectionViewCell: ConfigurableView {
+extension NewsListCollectionViewCell: IConfigurableView {
     func configure(with model: NewsItem) {
         titleLabel?.text = model.title
         dateLabel?.text = model.date?.formatDate

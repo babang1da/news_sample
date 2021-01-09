@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ConfigurableView {
+protocol IConfigurableView {
     associatedtype ConfigurationModel
     func configure(with model: ConfigurationModel)
 }

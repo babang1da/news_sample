@@ -25,31 +25,36 @@ enum RSSSource: String, CaseIterable {
 }
 
 protocol IRSSManager: class {
-    func getNews(sources: [RSSSource], completion: @escaping ([RSSNewsResponse]) -> Void)
+    func getRSS(sources: [RSSSource], completion: @escaping ([RSSResponse]) -> Void)
 }
 
 final class RSSManager: NSObject, IRSSManager {
     
-    private var loadedNews = [RSSNewsResponse]()
+    private let rssParser: IRSSParser
+    private var loadedRSS = [RSSResponse]()
     
-    func getNews(sources: [RSSSource], completion: @escaping ([RSSNewsResponse]) -> Void) {
+    init(rssParser: IRSSParser) {
+        self.rssParser = rssParser
+    }
+    
+    func getRSS(sources: [RSSSource], completion: @escaping ([RSSResponse]) -> Void) {
         
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "com.EgorOprea.News", attributes: .concurrent)
         
         sources.forEach { source in
-            let rssParser = RSSParser()
             group.enter()
             queue.async { [weak self] in
-                self?.loadRSS(parser: rssParser, source: source) { news in
+                guard let self = self else {return}
+                self.loadRSS(parser: self.rssParser, source: source) { news in
                     let news = news.map {
-                        RSSNewsResponse(sourceName: source.rawValue,
+                        RSSResponse(sourceName: source.rawValue,
                                     title: $0.title,
                                     pubDate: $0.pubDate,
                                     description: $0.description,
                                     link: $0.link)
                     }
-                    self?.loadedNews += news
+                    self.loadedRSS += news
                     group.leave()
                 }
             }
@@ -57,15 +62,15 @@ final class RSSManager: NSObject, IRSSManager {
         
         group.notify(queue: .main) { [weak self] in
             guard let self = self else {return}
-            completion(self.loadedNews)
-            self.loadedNews.removeAll()
+            completion(self.loadedRSS)
+            self.loadedRSS.removeAll()
         }
         
     }
     
     // MARK: - Helpful
     
-    private func loadRSS(parser: RSSParser, source: RSSSource, completion: @escaping ([RSSNewsResponse]) -> Void) {
+    private func loadRSS(parser: IRSSParser, source: RSSSource, completion: @escaping ([RSSResponse]) -> Void) {
 
         guard let url = source.url else {
             print(#line, "Bad url")
@@ -75,7 +80,7 @@ final class RSSManager: NSObject, IRSSManager {
         parser.startParsingWithContentsOfURL(rssURL: url) { parsedData in
             
             let dataArray = parsedData.compactMap { try? JSONEncoder().encode($0) }
-            let rssNews = dataArray.compactMap { try? JSONDecoder().decode(RSSNewsResponse.self, from: $0) }
+            let rssNews = dataArray.compactMap { try? JSONDecoder().decode(RSSResponse.self, from: $0) }
 
             print("rssNews.count: \(rssNews.count)")
             print(Thread.isMainThread)

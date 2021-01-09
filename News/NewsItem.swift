@@ -15,15 +15,6 @@ struct NewsItem {
     var imageData: Data?
     var isFresh: Bool
     
-    init(rssItem: RSSNewsResponse) {
-        source = rssItem.sourceName
-        title = rssItem.title
-        date = rssItem.pubDate
-        description = rssItem.description
-        imageData = nil
-        isFresh = true
-    }
-    
     init(dbNewsItem: DBNewsItem) {
         source = dbNewsItem.source
         title = dbNewsItem.title

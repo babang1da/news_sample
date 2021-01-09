@@ -24,7 +24,7 @@ final class NewsService: INewsService {
         self.dataManager = dataManager
     }
     
-    private func saveNewsItem(_ item: RSSNewsResponse) {
+    private func saveNewsItem(_ item: RSSResponse) {
         dataManager.persistentContainer.performBackgroundTask { context in
             _ = DBNewsItem(source: item.sourceName,
                            title: item.title,
@@ -46,7 +46,7 @@ final class NewsService: INewsService {
     func updateNews(sources: [RSSSource], completion: @escaping ([NewsItem]?) -> Void) {
         NotificationCenter.default.post(Notification(name: .beginLoadData))
         
-        provider.getNews(sources: sources) { [weak self] news in
+        provider.getRSS(sources: sources) { [weak self] news in
             print(#function, "sources: \(sources)", "news.count: \(news.count)")
             news.forEach { self?.saveNewsItem($0) }
             

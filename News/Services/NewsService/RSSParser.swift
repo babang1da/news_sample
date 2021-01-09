@@ -7,7 +7,11 @@
 
 import Foundation
 
-final class RSSParser: NSObject {
+protocol IRSSParser: class {
+    func startParsingWithContentsOfURL(rssURL: URL, completion: @escaping ([[String: String]]) -> Void)
+}
+
+final class RSSParser: NSObject, IRSSParser {
     private var currentElement = ""
     private var foundCharacters = ""
     private var currentData = [String: String]()

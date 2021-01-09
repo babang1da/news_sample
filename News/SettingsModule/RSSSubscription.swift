@@ -12,6 +12,4 @@ struct RSSSubscription {
     var isActive: Bool
 }
 
-extension RSSSubscription: Equatable {
-    
-}
+extension RSSSubscription: Equatable {}

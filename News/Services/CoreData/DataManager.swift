@@ -34,10 +34,6 @@ final class DataManager: IDataManager {
     var mainContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
-    
-//    func newBackgroundContext() -> NSManagedObjectContext {
-//        return persistentContainer.newBackgroundContext()
-//    }
 
     // MARK: - Core Data Saving support
 

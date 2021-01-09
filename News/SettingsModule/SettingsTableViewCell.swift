@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell, ConfigurableView {
+class SettingsTableViewCell: UITableViewCell, IConfigurableView {
 
     @IBOutlet private weak var sourceLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
