@@ -27,15 +27,19 @@ final class SettingsViewController: UIViewController {
         return dict
     }()
     private lazy var rssSubscriptions: [RSSSource] = {
-        return appSettings?.rssSubscriptions ?? []
+        return output?.rssSubscriptions ?? []
     }()
     private var sources = [RSSSubscription]()
     private var sourcesCopy = [RSSSubscription]()
     private var isTimerChanged = false
     
+    // MARK: - Injections
+    
+//    var appSettings: IAppSettings? = AppSettings()
+    var output: ISettingsViewOutput?
+    
     // MARK: - Public
     
-    var appSettings: IAppSettings? = AppSettings()
     var updateNewsList: (() -> Void)?
     var updateTimer: (() -> Void)?
     
@@ -51,7 +55,7 @@ final class SettingsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        appSettings?.rssSubscriptions = sources.filter { $0.isActive }.compactMap { RSSSource(rawValue: $0.name) }
+        output?.rssSubscriptions = sources.filter { $0.isActive }.compactMap { RSSSource(rawValue: $0.name) }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -120,10 +124,10 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TimerTableViewCell.self)) as? TimerTableViewCell {
                 cell.timeintervalChoosen = { [weak self] timeinterval in
-                    self?.appSettings?.refreshInterval = timeinterval
+                    self?.output?.refreshInterval = timeinterval
                     self?.isTimerChanged = true
                 }
-                cell.currentInterval = appSettings?.refreshInterval
+                cell.currentInterval = output?.refreshInterval
                 return cell
             }
             
@@ -151,5 +155,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             return 44
         }
     }
+    
+}
+
+extension SettingsViewController: ISettingsViewInput {
     
 }

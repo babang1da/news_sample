@@ -78,7 +78,6 @@ class NewsListViewController: UIViewController {
     @IBAction func actionSettings(_ sender: UIBarButtonItem) {
         output?.showSettings()
     }
-
 }
 
 // MARK: - UICollectionViewDelegate
@@ -92,7 +91,6 @@ extension NewsListViewController: UICollectionViewDelegate {
         
         output?.showNewsDetails(for: dataSource?.news[indexPath.item])
     }
-
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

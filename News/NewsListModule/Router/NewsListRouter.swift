@@ -30,7 +30,7 @@ extension NewsListRouter: INewsListRouterInput {
             .instantiateViewController(identifier: String(describing: SettingsViewController.self)) as? SettingsViewController {
             
             destination.updateNewsList = { [weak self] in
-                self?.output?.updateNewsList()
+                self?.output?.reloadNewsList()
             }
             destination.updateTimer = { [weak self] in
                 self?.output?.updateRefreshTimer()

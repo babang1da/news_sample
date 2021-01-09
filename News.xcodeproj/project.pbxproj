@@ -22,6 +22,14 @@
 		796927BE25A99BEE00717C81 /* INewsListRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927BD25A99BEE00717C81 /* INewsListRouterInput.swift */; };
 		796927C225A9B01D00717C81 /* NewsListModuleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927C125A9B01D00717C81 /* NewsListModuleAssembly.swift */; };
 		796927C625A9BA2600717C81 /* INewsListRouterOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927C525A9BA2600717C81 /* INewsListRouterOutput.swift */; };
+		796927CB25A9CD8600717C81 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927CA25A9CD8600717C81 /* SettingsPresenter.swift */; };
+		796927CE25A9CDAA00717C81 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927CD25A9CDAA00717C81 /* SettingsRouter.swift */; };
+		796927D225A9CDB800717C81 /* SettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927D125A9CDB800717C81 /* SettingsInteractor.swift */; };
+		796927D525A9CDE200717C81 /* ISettingsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927D425A9CDE200717C81 /* ISettingsViewInput.swift */; };
+		796927D825A9CDEE00717C81 /* ISettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927D725A9CDEE00717C81 /* ISettingsViewOutput.swift */; };
+		796927DB25A9CE0400717C81 /* ISettingsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927DA25A9CE0300717C81 /* ISettingsInteractorInput.swift */; };
+		796927E425A9CE4C00717C81 /* ISettingsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927E325A9CE4C00717C81 /* ISettingsRouterInput.swift */; };
+		796927EA25A9CE9600717C81 /* SettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796927E925A9CE9600717C81 /* SettingsAssembly.swift */; };
 		797B6F7425A5EC8F00D56380 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B6F7325A5EC8F00D56380 /* NewsService.swift */; };
 		797B6F7925A5F19300D56380 /* DBNewsItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B6F7725A5F19300D56380 /* DBNewsItem+CoreDataClass.swift */; };
 		797B6F7A25A5F19300D56380 /* DBNewsItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B6F7825A5F19300D56380 /* DBNewsItem+CoreDataProperties.swift */; };
@@ -60,6 +68,14 @@
 		796927BD25A99BEE00717C81 /* INewsListRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewsListRouterInput.swift; sourceTree = "<group>"; };
 		796927C125A9B01D00717C81 /* NewsListModuleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListModuleAssembly.swift; sourceTree = "<group>"; };
 		796927C525A9BA2600717C81 /* INewsListRouterOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INewsListRouterOutput.swift; sourceTree = "<group>"; };
+		796927CA25A9CD8600717C81 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		796927CD25A9CDAA00717C81 /* SettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		796927D125A9CDB800717C81 /* SettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsInteractor.swift; sourceTree = "<group>"; };
+		796927D425A9CDE200717C81 /* ISettingsViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsViewInput.swift; sourceTree = "<group>"; };
+		796927D725A9CDEE00717C81 /* ISettingsViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsViewOutput.swift; sourceTree = "<group>"; };
+		796927DA25A9CE0300717C81 /* ISettingsInteractorInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsInteractorInput.swift; sourceTree = "<group>"; };
+		796927E325A9CE4C00717C81 /* ISettingsRouterInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISettingsRouterInput.swift; sourceTree = "<group>"; };
+		796927E925A9CE9600717C81 /* SettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAssembly.swift; sourceTree = "<group>"; };
 		797B6F7325A5EC8F00D56380 /* NewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		797B6F7725A5F19300D56380 /* DBNewsItem+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBNewsItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		797B6F7825A5F19300D56380 /* DBNewsItem+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBNewsItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -145,7 +161,7 @@
 		7969279825A994D300717C81 /* NewsListModule */ = {
 			isa = PBXGroup;
 			children = (
-				796927C125A9B01D00717C81 /* NewsListModuleAssembly.swift */,
+				796927EE25A9CE9C00717C81 /* Assembly */,
 				796927AE25A997DD00717C81 /* Presenter */,
 				796927AC25A997D600717C81 /* Interactor */,
 				796927AB25A997CB00717C81 /* Router */,
@@ -165,10 +181,11 @@
 		7969279A25A9952300717C81 /* SettingsModule */ = {
 			isa = PBXGroup;
 			children = (
-				797B6F8525A6F12A00D56380 /* SettingsViewController.swift */,
-				7969277D25A72AB800717C81 /* SettingsTableViewCell.swift */,
-				7969278625A8413C00717C81 /* TimerTableViewCell.swift */,
-				7969278025A72BEB00717C81 /* RSSSubscription.swift */,
+				796927EF25A9CEA400717C81 /* Assembly */,
+				796927E825A9CE8200717C81 /* Presenter */,
+				796927E025A9CE1800717C81 /* Interactor */,
+				796927C825A9CD6400717C81 /* View */,
+				796927E725A9CE5300717C81 /* Router */,
 			);
 			path = SettingsModule;
 			sourceTree = "<group>";
@@ -179,6 +196,7 @@
 				79803F4E25A4E8FF003B2AD8 /* NewsListViewController.swift */,
 				7969278925A8D7F600717C81 /* NewsListCollectionViewDataSource.swift */,
 				79803F7825A4F337003B2AD8 /* NewsListCollectionViewCell.swift */,
+				79803F7F25A59DBA003B2AD8 /* IConfigurableView.swift */,
 				796927B025A9989000717C81 /* INewsListViewInput.swift */,
 				796927B325A998AC00717C81 /* INewsListViewOutput.swift */,
 			);
@@ -199,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				796927A325A9976E00717C81 /* NewsListInteractor.swift */,
+				79803F7C25A59BAC003B2AD8 /* NewsItem.swift */,
 				796927B725A99A1D00717C81 /* INewsListInteractorInput.swift */,
 				796927BA25A99BCE00717C81 /* INewsInteractorOutput.swift */,
 			);
@@ -211,6 +230,61 @@
 				796927A025A9973600717C81 /* NewsListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		796927C825A9CD6400717C81 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				797B6F8525A6F12A00D56380 /* SettingsViewController.swift */,
+				7969277D25A72AB800717C81 /* SettingsTableViewCell.swift */,
+				7969278025A72BEB00717C81 /* RSSSubscription.swift */,
+				7969278625A8413C00717C81 /* TimerTableViewCell.swift */,
+				796927D425A9CDE200717C81 /* ISettingsViewInput.swift */,
+				796927D725A9CDEE00717C81 /* ISettingsViewOutput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		796927E025A9CE1800717C81 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				796927D125A9CDB800717C81 /* SettingsInteractor.swift */,
+				796927DA25A9CE0300717C81 /* ISettingsInteractorInput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		796927E725A9CE5300717C81 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				796927CD25A9CDAA00717C81 /* SettingsRouter.swift */,
+				796927E325A9CE4C00717C81 /* ISettingsRouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		796927E825A9CE8200717C81 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				796927CA25A9CD8600717C81 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		796927EE25A9CE9C00717C81 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				796927C125A9B01D00717C81 /* NewsListModuleAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		796927EF25A9CEA400717C81 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				796927E925A9CE9600717C81 /* SettingsAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		797B6F7C25A5F1C200D56380 /* CoreData */ = {
@@ -249,8 +323,6 @@
 				7969279825A994D300717C81 /* NewsListModule */,
 				7969279925A9950300717C81 /* NewsDetailsModule */,
 				7969279A25A9952300717C81 /* SettingsModule */,
-				79803F7F25A59DBA003B2AD8 /* IConfigurableView.swift */,
-				79803F7C25A59BAC003B2AD8 /* NewsItem.swift */,
 				79803F5025A4E8FF003B2AD8 /* Main.storyboard */,
 				7969279125A993A400717C81 /* HelpfulFiles */,
 				7969278F25A9936E00717C81 /* SupportingFiles */,
@@ -331,9 +403,12 @@
 				796927A125A9973600717C81 /* NewsListPresenter.swift in Sources */,
 				796927B125A9989000717C81 /* INewsListViewInput.swift in Sources */,
 				79803F8625A5D061003B2AD8 /* NewsDetailViewController.swift in Sources */,
+				796927D825A9CDEE00717C81 /* ISettingsViewOutput.swift in Sources */,
+				796927D225A9CDB800717C81 /* SettingsInteractor.swift in Sources */,
 				79803F7025A4F06D003B2AD8 /* Task.swift in Sources */,
 				7969277E25A72AB800717C81 /* SettingsTableViewCell.swift in Sources */,
 				796927BE25A99BEE00717C81 /* INewsListRouterInput.swift in Sources */,
+				796927E425A9CE4C00717C81 /* ISettingsRouterInput.swift in Sources */,
 				79803F6925A4E92F003B2AD8 /* RSSManager.swift in Sources */,
 				796927B825A99A1D00717C81 /* INewsListInteractorInput.swift in Sources */,
 				797B6F7A25A5F19300D56380 /* DBNewsItem+CoreDataProperties.swift in Sources */,
@@ -349,16 +424,21 @@
 				79803F5525A4E8FF003B2AD8 /* News.xcdatamodeld in Sources */,
 				7969278725A8413C00717C81 /* TimerTableViewCell.swift in Sources */,
 				796927BB25A99BCE00717C81 /* INewsInteractorOutput.swift in Sources */,
+				796927CE25A9CDAA00717C81 /* SettingsRouter.swift in Sources */,
 				79803F6D25A4EBFA003B2AD8 /* RSSResponse.swift in Sources */,
 				79803F8025A59DBA003B2AD8 /* IConfigurableView.swift in Sources */,
 				796927C225A9B01D00717C81 /* NewsListModuleAssembly.swift in Sources */,
 				797B6F7925A5F19300D56380 /* DBNewsItem+CoreDataClass.swift in Sources */,
 				79803F7925A4F337003B2AD8 /* NewsListCollectionViewCell.swift in Sources */,
+				796927D525A9CDE200717C81 /* ISettingsViewInput.swift in Sources */,
 				797B6F8625A6F12A00D56380 /* SettingsViewController.swift in Sources */,
 				796927A725A9979200717C81 /* NewsListRouter.swift in Sources */,
 				797B6F7425A5EC8F00D56380 /* NewsService.swift in Sources */,
+				796927CB25A9CD8600717C81 /* SettingsPresenter.swift in Sources */,
 				79803F7D25A59BAC003B2AD8 /* NewsItem.swift in Sources */,
 				7969278425A739F300717C81 /* AppSettings.swift in Sources */,
+				796927DB25A9CE0400717C81 /* ISettingsInteractorInput.swift in Sources */,
+				796927EA25A9CE9600717C81 /* SettingsAssembly.swift in Sources */,
 				79803F6525A4E927003B2AD8 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

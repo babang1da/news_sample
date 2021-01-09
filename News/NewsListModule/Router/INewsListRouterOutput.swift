@@ -8,6 +8,6 @@
 import Foundation
 
 protocol INewsListRouterOutput {
-    func updateNewsList()
+    func reloadNewsList()
     func updateRefreshTimer()
 }
