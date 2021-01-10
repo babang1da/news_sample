@@ -11,7 +11,7 @@ import CoreData
 protocol IDataManager {
     var mainContext: NSManagedObjectContext {get}
     func saveContext()
-    var persistentContainer: NSPersistentContainer {get set}
+    var persistentContainer: NSPersistentContainer {get}
 }
 
 final class DataManager: IDataManager {
