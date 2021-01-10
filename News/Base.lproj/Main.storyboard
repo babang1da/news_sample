@@ -36,12 +36,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="319"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fgx-Z0-NR1">
-                                                    <rect key="frame" x="8" y="75" width="366" height="236"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z63-90-uKf">
+                                                    <rect key="frame" x="0.0" y="75" width="382" height="244"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fgx-Z0-NR1">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="244"/>
+                                                        </imageView>
+                                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="G64-Ap-S8s">
+                                                            <rect key="frame" x="181" y="112" width="20" height="20"/>
+                                                        </activityIndicatorView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="236" id="mh7-7Q-vaM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="fgx-Z0-NR1" secondAttribute="trailing" id="3kv-eZ-FMx"/>
+                                                        <constraint firstAttribute="height" constant="244" id="7BJ-Yn-c6t"/>
+                                                        <constraint firstItem="fgx-Z0-NR1" firstAttribute="leading" secondItem="z63-90-uKf" secondAttribute="leading" id="IzW-Ws-hP1"/>
+                                                        <constraint firstItem="fgx-Z0-NR1" firstAttribute="top" secondItem="z63-90-uKf" secondAttribute="top" id="NMz-tS-ftA"/>
+                                                        <constraint firstAttribute="bottom" secondItem="fgx-Z0-NR1" secondAttribute="bottom" id="VPj-cv-JW8"/>
+                                                        <constraint firstItem="G64-Ap-S8s" firstAttribute="centerY" secondItem="z63-90-uKf" secondAttribute="centerY" id="lNP-Xf-7JE"/>
+                                                        <constraint firstItem="G64-Ap-S8s" firstAttribute="centerX" secondItem="z63-90-uKf" secondAttribute="centerX" id="opT-5e-sCm"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Source" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbd-4q-IZJ">
                                                     <rect key="frame" x="8" y="8" width="51.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -80,16 +95,16 @@
                                             <constraints>
                                                 <constraint firstItem="tbd-4q-IZJ" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="0ae-8N-BbL"/>
                                                 <constraint firstItem="tbd-4q-IZJ" firstAttribute="top" secondItem="AbV-2R-oyc" secondAttribute="top" constant="8" id="2IU-My-b2j"/>
-                                                <constraint firstAttribute="trailing" secondItem="fgx-Z0-NR1" secondAttribute="trailing" constant="8" id="7ja-dq-O3M"/>
-                                                <constraint firstAttribute="bottom" secondItem="fgx-Z0-NR1" secondAttribute="bottom" constant="8" id="9dP-0c-CPM"/>
                                                 <constraint firstAttribute="trailing" secondItem="RfY-CL-Zpz" secondAttribute="trailing" constant="8" id="CmM-hG-lmA"/>
                                                 <constraint firstItem="RfY-CL-Zpz" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="Ggk-1d-Ts8"/>
-                                                <constraint firstItem="fgx-Z0-NR1" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" constant="8" id="MJc-Is-ztq"/>
                                                 <constraint firstItem="hlu-q2-rTB" firstAttribute="top" secondItem="AbV-2R-oyc" secondAttribute="top" constant="8" id="MoG-F3-fRb"/>
-                                                <constraint firstItem="fgx-Z0-NR1" firstAttribute="top" secondItem="RfY-CL-Zpz" secondAttribute="bottom" constant="8" symbolic="YES" id="Q7G-bh-jKA"/>
+                                                <constraint firstItem="z63-90-uKf" firstAttribute="top" secondItem="RfY-CL-Zpz" secondAttribute="bottom" constant="8" symbolic="YES" id="eP4-Ac-PsY"/>
                                                 <constraint firstAttribute="trailing" secondItem="hlu-q2-rTB" secondAttribute="trailing" constant="8" id="jXe-1O-prf"/>
                                                 <constraint firstItem="hlu-q2-rTB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tbd-4q-IZJ" secondAttribute="trailing" constant="8" symbolic="YES" id="jyd-RH-3JA"/>
+                                                <constraint firstAttribute="bottom" secondItem="z63-90-uKf" secondAttribute="bottom" id="oTz-G1-kvc"/>
                                                 <constraint firstItem="RfY-CL-Zpz" firstAttribute="top" secondItem="tbd-4q-IZJ" secondAttribute="bottom" constant="15.5" id="pWa-Y7-Kb9"/>
+                                                <constraint firstAttribute="trailing" secondItem="z63-90-uKf" secondAttribute="trailing" id="xgW-YO-Iob"/>
+                                                <constraint firstItem="z63-90-uKf" firstAttribute="leading" secondItem="AbV-2R-oyc" secondAttribute="leading" id="yHF-h0-hUl"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="382" height="319"/>
@@ -98,6 +113,7 @@
                                             <outlet property="imageView" destination="fgx-Z0-NR1" id="v0g-Kc-8DF"/>
                                             <outlet property="isFreshView" destination="OXA-80-lTm" id="Fck-62-qJX"/>
                                             <outlet property="sourceLabel" destination="tbd-4q-IZJ" id="Bom-dA-TqJ"/>
+                                            <outlet property="spinner" destination="G64-Ap-S8s" id="CAR-TI-78b"/>
                                             <outlet property="titleLabel" destination="RfY-CL-Zpz" id="9iW-DE-Dh8"/>
                                         </connections>
                                     </collectionViewCell>
@@ -214,10 +230,15 @@
                                                         <constraint firstAttribute="height" constant="250" id="7A4-Jo-CE5"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="UiN-RG-fA8">
+                                                    <rect key="frame" x="197" y="130.5" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="CCf-hG-rcg" firstAttribute="leading" secondItem="dW0-0G-TiI" secondAttribute="leadingMargin" constant="4" id="FzS-QD-qGf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="CCf-hG-rcg" secondAttribute="trailing" constant="4" id="HGi-eW-nLW"/>
+                                                <constraint firstItem="UiN-RG-fA8" firstAttribute="centerX" secondItem="dW0-0G-TiI" secondAttribute="centerX" id="Kqm-ab-fXE"/>
+                                                <constraint firstItem="UiN-RG-fA8" firstAttribute="centerY" secondItem="dW0-0G-TiI" secondAttribute="centerY" id="W1o-X8-476"/>
                                                 <constraint firstItem="CCf-hG-rcg" firstAttribute="top" secondItem="dW0-0G-TiI" secondAttribute="topMargin" constant="4.5" id="iRd-a5-1M2"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="CCf-hG-rcg" secondAttribute="bottom" constant="4.5" id="n3h-E1-dgx"/>
                                             </constraints>
@@ -261,6 +282,7 @@
                         <outlet property="descriptionLabel" destination="cqC-RV-nGb" id="1Yv-fg-b1O"/>
                         <outlet property="imageView" destination="CCf-hG-rcg" id="X3X-LC-pQr"/>
                         <outlet property="sourceLabel" destination="Fsr-fy-8AR" id="sfg-AM-ALj"/>
+                        <outlet property="spinner" destination="UiN-RG-fA8" id="RER-ii-a0n"/>
                         <outlet property="titleLabel" destination="R7s-i9-4TY" id="c4f-2h-bF2"/>
                     </connections>
                 </tableViewController>

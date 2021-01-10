@@ -22,13 +22,9 @@ final class NewsListInteractor {
 extension NewsListInteractor: INewsListInteractorInput {
     
     func reloadNewsList() {
-        //delete cache
         newsService?.eraseCache()
-        
-        //update news
         updateNewsList()
     }
-    
     
     func updateNewsList() {
         if let news = newsService?.getNews() {
@@ -43,7 +39,6 @@ extension NewsListInteractor: INewsListInteractorInput {
             }
         }
     }
-    
     
     func updateRefreshTimer() {
         timer?.invalidate()

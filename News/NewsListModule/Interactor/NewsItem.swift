@@ -12,15 +12,32 @@ struct NewsItem {
     var title: String?
     var date: String?
     var description: String?
-    var imageData: Data?
+    var imageURL: String?
     var isFresh: Bool
+    
+    init(source: String?,
+         title: String?,
+         date: String?,
+         description: String?,
+         imageURL: String?,
+         isFresh: Bool) {
+        
+        self.source = source
+        self.title = title
+        self.date = date
+        self.description = description
+        self.imageURL = imageURL
+        self.isFresh = true
+    }
     
     init(dbNewsItem: DBNewsItem) {
         source = dbNewsItem.source
         title = dbNewsItem.title
         date = dbNewsItem.date
         description = dbNewsItem.newsDescription
-        imageData = dbNewsItem.imageData
+        imageURL = dbNewsItem.imageURL
         isFresh = true
     }
 }
+
+extension NewsItem: Equatable {}

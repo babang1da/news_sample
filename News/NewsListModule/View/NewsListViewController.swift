@@ -58,14 +58,6 @@ class NewsListViewController: UIViewController {
         output?.updateNewsList()
     }
     
-    override func viewWillTransition(to size: CGSize,
-                                     with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { [weak self] context in
-            self?.collectionView.collectionViewLayout.invalidateLayout()
-        }, completion: nil)
-    }
-    
     // MARK: - Helpful
     
     private func refreshView(with items: [NewsItem]) {
@@ -85,10 +77,6 @@ class NewsListViewController: UIViewController {
 extension NewsListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        dataSource?.news[indexPath.item].isFresh = false
-        collectionView.reloadItems(at: [indexPath])
-        
         output?.showNewsDetails(for: dataSource?.news[indexPath.item])
     }
 }

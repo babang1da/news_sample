@@ -36,6 +36,8 @@ extension RSSParser: XMLParserDelegate {
                 qualifiedName qName: String?,
                 attributes attributeDict: [String : String] = [:]) {
         
+//        print(elementName)
+        
         currentElement = elementName
         
         if currentElement == "item" || currentElement == "entry" {
@@ -46,11 +48,19 @@ extension RSSParser: XMLParserDelegate {
         }
         
         if !isHeader {
-            if
-                currentElement == "media:thumbnail" ||
-                currentElement == "media:content",
-                let chars = attributeDict["url"] {
-                
+//            if
+//                currentElement == "media:thumbnail" ||
+//                currentElement == "media:content",
+//                let chars = attributeDict["url"] {
+//
+//                foundCharacters += chars
+//            }
+            
+//            if currentElement == "image", let chars = attributeDict["url"] {
+//                foundCharacters += chars
+//            }
+            
+            if currentElement == "enclosure", let chars = attributeDict["url"] {
                 foundCharacters += chars
             }
         }
@@ -66,6 +76,7 @@ extension RSSParser: XMLParserDelegate {
                 currentElement == "content" ||
                 currentElement == "pubDate" ||
                 currentElement == "author" ||
+                currentElement == "enclosure" ||
                 currentElement == "dc:creator" ||
                 currentElement == "content:encoded" {
                 

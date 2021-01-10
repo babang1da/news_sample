@@ -52,7 +52,8 @@ final class RSSManager: NSObject, IRSSManager {
                                     title: $0.title,
                                     pubDate: $0.pubDate,
                                     description: $0.description,
-                                    link: $0.link)
+                                    link: $0.link,
+                                    url: $0.url)
                     }
                     self.loadedRSS += news
                     group.leave()
@@ -78,12 +79,13 @@ final class RSSManager: NSObject, IRSSManager {
         }
         
         parser.startParsingWithContentsOfURL(rssURL: url) { parsedData in
+                        
+//            print(parsedData)
             
             let dataArray = parsedData.compactMap { try? JSONEncoder().encode($0) }
             let rssNews = dataArray.compactMap { try? JSONDecoder().decode(RSSResponse.self, from: $0) }
 
-            print("rssNews.count: \(rssNews.count)")
-            print(Thread.isMainThread)
+//            print("rssNews: \(rssNews)")
             completion(rssNews)
         }
     }

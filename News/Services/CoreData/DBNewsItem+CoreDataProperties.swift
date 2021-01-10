@@ -19,7 +19,7 @@ extension DBNewsItem {
     @NSManaged public var source: String?
     @NSManaged public var title: String?
     @NSManaged public var newsDescription: String?
-    @NSManaged public var imageData: Data?
+    @NSManaged public var imageURL: String?
     @NSManaged public var date: String?
 
 }
@@ -33,13 +33,13 @@ extension DBNewsItem {
                      title: String?,
                      description: String?,
                      date: String?,
-                     imageData: Data?,
+                     imageURL: String?,
                      in context: NSManagedObjectContext) {
         self.init(context: context)
         self.source = source
         self.title = title
         self.newsDescription = description
-        self.imageData = imageData
+        self.imageURL = imageURL
         self.date = date
     }
 }

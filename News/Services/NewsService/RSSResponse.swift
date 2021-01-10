@@ -13,6 +13,16 @@ struct RSSResponse: Decodable {
     var pubDate: String?
     var description: String?
     var link: String?
+    var url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case sourceName
+        case title
+        case pubDate
+        case description
+        case link
+        case url = "enclosure"
+    }
 }
 
 extension RSSResponse: Comparable {

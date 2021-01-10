@@ -35,7 +35,6 @@ final class SettingsViewController: UIViewController {
     
     // MARK: - Injections
     
-//    var appSettings: IAppSettings? = AppSettings()
     var output: ISettingsViewOutput?
     
     // MARK: - Public

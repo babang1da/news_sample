@@ -30,7 +30,7 @@ final class NewsService: INewsService {
                            title: item.title,
                            description: item.description,
                            date: item.pubDate,
-                           imageData: nil, //TODO: set image data (or URL)
+                           imageURL: item.url, 
                            in: context)
             try? context.save()
         }

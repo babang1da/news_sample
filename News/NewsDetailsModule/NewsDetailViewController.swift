@@ -16,6 +16,7 @@ class NewsDetailViewController: UITableViewController {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var spinner: UIActivityIndicatorView!
     
     // MARK: - Public
     
@@ -37,12 +38,21 @@ class NewsDetailViewController: UITableViewController {
         sourceLabel?.text = item?.source?.capitalized
         dateLabel?.text = item?.date?.formatDate
         titleLabel?.text = item?.title
-        if let data = item?.imageData {
-            imageView?.image = UIImage(data: data)
-        } else {
-            imageView?.image = UIImage(named: "placeholder")
-        }
         descriptionLabel?.text = item?.description
+        imageView?.image = UIImage(named: "placeholder")
+        
+        if let stringURL = item?.imageURL {
+            spinner.startAnimating()
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let url = URL(string: stringURL),
+                   let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.spinner.stopAnimating()
+                        self?.imageView?.image = UIImage(data: data)
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - TableView Datasource
