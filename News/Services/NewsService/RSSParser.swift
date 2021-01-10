@@ -24,6 +24,8 @@ final class RSSParser: NSObject, IRSSParser {
         if let _ = parser?.parse() {
             parsedData.append(currentData)
             completion(parsedData)
+            currentData.removeAll()
+            parsedData.removeAll()
         }
     }
 }
@@ -35,9 +37,7 @@ extension RSSParser: XMLParserDelegate {
                 namespaceURI: String?,
                 qualifiedName qName: String?,
                 attributes attributeDict: [String : String] = [:]) {
-        
-//        print(elementName)
-        
+
         currentElement = elementName
         
         if currentElement == "item" || currentElement == "entry" {
@@ -48,18 +48,14 @@ extension RSSParser: XMLParserDelegate {
         }
         
         if !isHeader {
-//            if
-//                currentElement == "media:thumbnail" ||
-//                currentElement == "media:content",
-//                let chars = attributeDict["url"] {
-//
-//                foundCharacters += chars
-//            }
-            
-//            if currentElement == "image", let chars = attributeDict["url"] {
-//                foundCharacters += chars
-//            }
-            
+            if
+                currentElement == "media:thumbnail" ||
+                currentElement == "media:content",
+                let chars = attributeDict["url"] {
+
+                foundCharacters += chars
+            }
+
             if currentElement == "enclosure", let chars = attributeDict["url"] {
                 foundCharacters += chars
             }
